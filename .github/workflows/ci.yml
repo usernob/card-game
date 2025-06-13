@@ -15,8 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: windows-vs2019, os: windows-2019  }
-        - { name: windows-vs2022, os: windows-2022  }
+        - { name: windows-vs2019, os: windows-2019, flags: -DAOM_TARGET_CPU=generic }
+        - { name: windows-vs2022, os: windows-2022, flags: -DAOM_TARGET_CPU=generic }
         - { name: linux-gcc,      os: ubuntu-latest }
         - { name: linux-clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: macos,          os: macos-latest  }
