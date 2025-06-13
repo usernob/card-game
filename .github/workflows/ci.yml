@@ -15,8 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: windows-vs2019, os: windows-2019, flags: -DAOM_TARGET_CPU=generic }
-        - { name: windows-vs2022, os: windows-2022, flags: -DAOM_TARGET_CPU=generic }
+        - { name: windows-vs2022, os: windows-2022 }
         - { name: linux-gcc,      os: ubuntu-latest }
         - { name: linux-clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: macos,          os: macos-latest  }
@@ -26,9 +25,9 @@ jobs:
       if: runner.os == 'Linux'
       run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
 
-    - name: Install nasm on Windows
+    - name: Set up NASM
+      uses: ilammy/setup-nasm@v1
       if: runner.os == 'Windows'
-      run: choco install nasm -y
 
     - name: Checkout
       uses: actions/checkout@v4
