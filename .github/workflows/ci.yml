@@ -15,21 +15,27 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: windows-vs2022, os: windows-2022 }
+        - { name: windows-vs2025, os: windows-2025 }
         - { name: linux-gcc,      os: ubuntu-latest }
         - { name: linux-clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: macos,          os: macos-latest  }
 
     steps:
-    - name: Install Linux Dependencies
-      if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+    # - name: Install Linux Dependencies
+    #   if: runner.os == 'Linux'
+    #   run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+    #
+    - name: Checkout
+      uses: actions/checkout@v4
+      with: 
+        submodules: recursive
 
     - name: Set up MSVC toolchain
       uses: ilammy/msvc-dev-cmd@v1
       if: ${{ matrix.platform.name == 'Windows' }}
       with:
         arch: x64
+
     - name: Set up ninja
       uses: ./.github/actions/setup-ninja
 
@@ -39,11 +45,6 @@ jobs:
       with:
         version: sdl3-latest
         cmake-generator: Ninja
-
-    - name: Checkout
-      uses: actions/checkout@v4
-      with: 
-        submodules: recursive
 
     - name: Configure
       run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE
