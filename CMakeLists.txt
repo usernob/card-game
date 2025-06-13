@@ -26,7 +26,7 @@ endif()
 
 file(GLOB_RECURSE SOURCE_FILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
