@@ -1,0 +1,227 @@
+{
+	"Name": "ui-atlas",
+	"Width": 256,
+	"Height": 128,
+	"Images": [
+		{
+			"Name": "button-2-clicked.png",
+			"X": 230,
+			"Y": 0,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "close-icon.png",
+			"X": 198,
+			"Y": 30,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "close-icon-clicked.png",
+			"X": 240,
+			"Y": 42,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-6.png",
+			"X": 184,
+			"Y": 44,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-5-clicked.png",
+			"X": 170,
+			"Y": 44,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-big.png",
+			"X": 0,
+			"Y": 87,
+			"W": 90,
+			"H": 27,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 90,
+			"UntrimmedHeight": 27
+		},
+		{
+			"Name": "container.png",
+			"X": 0,
+			"Y": 0,
+			"W": 170,
+			"H": 60,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 170,
+			"UntrimmedHeight": 60
+		},
+		{
+			"Name": "button-5.png",
+			"X": 212,
+			"Y": 30,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-big-clicked.png",
+			"X": 0,
+			"Y": 60,
+			"W": 90,
+			"H": 27,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 90,
+			"UntrimmedHeight": 27
+		},
+		{
+			"Name": "button-6-clicked.png",
+			"X": 184,
+			"Y": 30,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "container-2.png",
+			"X": 170,
+			"Y": 0,
+			"W": 28,
+			"H": 30,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 28,
+			"UntrimmedHeight": 30
+		},
+		{
+			"Name": "button-3-clicked.png",
+			"X": 240,
+			"Y": 28,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-4.png",
+			"X": 226,
+			"Y": 28,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-4-clicked.png",
+			"X": 212,
+			"Y": 16,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "container-4.png",
+			"X": 198,
+			"Y": 0,
+			"W": 16,
+			"H": 16,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 16,
+			"UntrimmedHeight": 16
+		},
+		{
+			"Name": "container-3.png",
+			"X": 214,
+			"Y": 0,
+			"W": 16,
+			"H": 16,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 16,
+			"UntrimmedHeight": 16
+		},
+		{
+			"Name": "button-3.png",
+			"X": 230,
+			"Y": 14,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-1.png",
+			"X": 198,
+			"Y": 16,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-1-clicked.png",
+			"X": 170,
+			"Y": 30,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		},
+		{
+			"Name": "button-2.png",
+			"X": 226,
+			"Y": 42,
+			"W": 14,
+			"H": 14,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 14,
+			"UntrimmedHeight": 14
+		}
+	]
+}

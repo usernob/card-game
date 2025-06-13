@@ -1,0 +1,282 @@
+{
+	"Name": "tarot-card-atlas",
+	"Width": 512,
+	"Height": 512,
+	"Images": [
+		{
+			"Name": "the_lovers.png",
+			"X": 0,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "judgement.png",
+			"X": 171,
+			"Y": 158,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "justice.png",
+			"X": 171,
+			"Y": 79,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_moon.png",
+			"X": 399,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "strength.png",
+			"X": 342,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_sun.png",
+			"X": 285,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "empress.png",
+			"X": 228,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_world.png",
+			"X": 171,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "wheel_of_fortune.png",
+			"X": 114,
+			"Y": 395,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "hanged_man.png",
+			"X": 114,
+			"Y": 316,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "magician.png",
+			"X": 114,
+			"Y": 237,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_fool.png",
+			"X": 114,
+			"Y": 158,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "hierophant.png",
+			"X": 114,
+			"Y": 79,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "chariot.png",
+			"X": 114,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_hermit.png",
+			"X": 57,
+			"Y": 395,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "death.png",
+			"X": 57,
+			"Y": 316,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "back_of_card_2.png",
+			"X": 57,
+			"Y": 237,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_tower.png",
+			"X": 57,
+			"Y": 158,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "emperor.png",
+			"X": 57,
+			"Y": 79,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "priestess.png",
+			"X": 57,
+			"Y": 0,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_devil.png",
+			"X": 0,
+			"Y": 395,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "temperance.png",
+			"X": 0,
+			"Y": 316,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "back_of_card_3.png",
+			"X": 0,
+			"Y": 237,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "the_star.png",
+			"X": 0,
+			"Y": 158,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		},
+		{
+			"Name": "back_of_card.png",
+			"X": 0,
+			"Y": 79,
+			"W": 57,
+			"H": 79,
+			"TrimOffsetX": 0,
+			"TrimOffsetY": 0,
+			"UntrimmedWidth": 57,
+			"UntrimmedHeight": 79
+		}
+	]
+}
