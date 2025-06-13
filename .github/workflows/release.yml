@@ -52,8 +52,11 @@ jobs:
         with: 
           submodules: recusive
 
+      - name: Set up ninja
+        uses: ./.github/actions/setup-ninja
+
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=FALSE
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=FALSE
 
       - name: Build
         run: cmake --build build --config Release
@@ -66,17 +69,17 @@ jobs:
           cd build/bin
 
           if [[ "${{ runner.os }}" == "Linux" ]]; then
-            cmake -E tar cfvz ../sfml-tetris-${OS_SHORT}-v${VERSION}.tar.gz --format=gnutar .
+            cmake -E tar cfvz ../card-game-${OS_SHORT}-v${VERSION}.tar.gz --format=gnutar .
           else
-            cmake -E tar cfv ../sfml-tetris-${OS_SHORT}-v${VERSION}.zip --format=zip .
+            cmake -E tar cfv ../card-game-${OS_SHORT}-v${VERSION}.zip --format=zip .
           fi
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            build/sfml-tetris-*.zip
-            build/sfml-tetris-*.tar.gz
+            build/card-game-*.zip
+            build/card-game-*.tar.gz
           prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

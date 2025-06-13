@@ -30,21 +30,8 @@ jobs:
       with: 
         submodules: recursive
 
-    - name: Set up MSVC toolchain
-      uses: ilammy/msvc-dev-cmd@v1
-      if: ${{ matrix.platform.name == 'Windows' }}
-      with:
-        arch: x64
-
     - name: Set up ninja
       uses: ./.github/actions/setup-ninja
-
-    # - name: Set up SDL
-    #   id: sdl
-    #   uses: libsdl-org/setup-sdl@v1
-    #   with:
-    #     version: sdl3-latest
-    #     cmake-generator: Ninja
 
     - name: Configure
       run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE
