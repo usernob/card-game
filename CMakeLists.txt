@@ -35,6 +35,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src)
 add_subdirectory(external)
 
 find_package(SDL3 REQUIRED CONFIG)
+find_package(SDL3_image REQUIRED CONFIG)
 
 target_link_libraries(
     ${PROJECT_NAME} PRIVATE SDL3::SDL3
