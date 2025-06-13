@@ -34,6 +34,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 add_subdirectory(external)
 
+find_package(SDL3 REQUIRED CONFIG)
+
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE SDL3::SDL3
+                            SDL3_image::SDL3_image
+)
+
 add_custom_target(
     copy-files ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets
