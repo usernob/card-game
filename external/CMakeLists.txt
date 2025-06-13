@@ -1,5 +1,3 @@
-add_subdirectory(cram)
-
 set(JSON_BuildTests
     OFF
     CACHE INTERNAL ""
