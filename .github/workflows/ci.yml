@@ -21,10 +21,10 @@ jobs:
         - { name: macos,          os: macos-latest  }
 
     steps:
-    # - name: Install Linux Dependencies
-    #   if: runner.os == 'Linux'
-    #   run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
-    #
+    - name: Install Linux Dependencies
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+
     - name: Checkout
       uses: actions/checkout@v4
       with: 
@@ -39,12 +39,12 @@ jobs:
     - name: Set up ninja
       uses: ./.github/actions/setup-ninja
 
-    - name: Set up SDL
-      id: sdl
-      uses: libsdl-org/setup-sdl@v1
-      with:
-        version: sdl3-latest
-        cmake-generator: Ninja
+    # - name: Set up SDL
+    #   id: sdl
+    #   uses: libsdl-org/setup-sdl@v1
+    #   with:
+    #     version: sdl3-latest
+    #     cmake-generator: Ninja
 
     - name: Configure
       run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE
