@@ -19,7 +19,7 @@
       in
       {
         devShell = pkgs.mkShell rec {
-          name = "sfml";
+          name = "sdl";
 
           nativeBuildInputs = with pkgs; [
             cmake
@@ -61,13 +61,9 @@
             clang-tools
             valgrind
             gdb
-            zellij
           ];
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
           NIX_LDFLAGS = "-rpath ${pkgs.lib.makeLibraryPath buildInputs}";
-          shellHook = ''
-            zellij
-          '';
         };
       }
     );
