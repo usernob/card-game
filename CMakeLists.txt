@@ -4,57 +4,71 @@ project(card-game)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
-if(CMAKE_CONFIGURATION_TYPES) # Multi-config check
-    foreach(outputconfig ${CMAKE_CONFIGURATION_TYPES})
-        string(TOUPPER ${outputconfig} outputconfig_upper)
-
-        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${outputconfig_upper}
-            ${CMAKE_BINARY_DIR}/bin
+# set output directory
+function(set_output_directories base_dir)
+    if(CMAKE_CONFIGURATION_TYPES) # Multi-config check
+        foreach(outputconfig ${CMAKE_CONFIGURATION_TYPES})
+            string(TOUPPER ${outputconfig} outputconfig_upper)
+            set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${outputconfig_upper}
+                ${CMAKE_BINARY_DIR}/${base_dir}
+                PARENT_SCOPE
+            )
+            set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${outputconfig_upper}
+                ${CMAKE_BINARY_DIR}/${base_dir}/lib
+                PARENT_SCOPE
+            )
+            set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${outputconfig_upper}
+                ${CMAKE_BINARY_DIR}/lib
+                PARENT_SCOPE
+            )
+        endforeach()
+    else() # Single config
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+            ${CMAKE_BINARY_DIR}/${base_dir}
+            PARENT_SCOPE
         )
-        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${outputconfig_upper}
-            ${CMAKE_BINARY_DIR}/bin/lib
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
+            ${CMAKE_BINARY_DIR}/${base_dir}/lib
+            PARENT_SCOPE
         )
-        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${outputconfig_upper}
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
             ${CMAKE_BINARY_DIR}/lib
+            PARENT_SCOPE
         )
-    endforeach()
-else() # Single config
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/lib)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-endif()
+    endif()
+endfunction()
 
-file(GLOB_RECURSE SOURCE_FILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp
+     ${CMAKE_SOURCE_DIR}/src/*.h
+)
 
+set_output_directories("bin")
 add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
-
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 add_subdirectory(external)
 
-add_custom_target(
-    copy-files ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets
-            ${CMAKE_BINARY_DIR}/bin/assets
+# copying assets to runtime directory
+add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/assets"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets"
+    COMMENT "Updating assets..."
 )
 
-add_dependencies(${PROJECT_NAME} copy-files)
-
+# i don't know but msvc seems forced to use C++20
 if(MSVC)
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 else()
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 endif()
 
+# add defininition
 target_compile_definitions(
     ${PROJECT_NAME}
     PRIVATE
         SDL_MAIN_USE_CALLBACKS
         ASSETS_PATH=$<IF:$<CONFIG:Debug>,"${CMAKE_CURRENT_SOURCE_DIR}/assets","./assets">
 )
-
-# add_custom_command( TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND}
-# -E copy_directory ${CMAKE_SOURCE_DIR}/assets
-# ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets COMMENT "copying assets" )
