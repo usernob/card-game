@@ -1261,7 +1261,14 @@ GamePage::GamePage(Game *game) : Pages(game)
         ->beginWidgetLayout(
             "container",
             nullptr,
-            LayoutProp{.layout_type = LayoutType::VERTICAL, .horizontal_anchor = Anchor::CENTER}
+            LayoutProp{
+                .layout_type = LayoutType::VERTICAL,
+                .width = 600,
+                .height = 400,
+                .horizontal_anchor = Anchor::CENTER,
+                .vertical_anchor = Anchor::CENTER,
+                .gap = 10
+            }
         )
         .setWidgetLayoutTexture(atlas->getAtlas(), atlas->getTextureInfo("container").rect)
         .addWidget<Label>("title", nullptr, Text(FontsManager::getFont("font1-w"), "Game Over"))
