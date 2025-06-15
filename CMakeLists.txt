@@ -70,11 +70,7 @@ add_custom_command(
 )
 
 # i don't know but msvc seems forced to use C++20
-if(MSVC)
-    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-else()
-    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
-endif()
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 if(EMSCRIPTEN)
     set(CMAKE_EXECUTABLE_SUFFIX
