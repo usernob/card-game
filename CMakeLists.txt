@@ -81,7 +81,7 @@ if(EMSCRIPTEN)
         ${PROJECT_NAME}
         PROPERTIES
             LINK_FLAGS
-            "--preload-file ${CMAKE_SOURCE_DIR}/assets@/assets -s ALLOW_MEMORY_GROWTH=1"
+            "--preload-file ${CMAKE_SOURCE_DIR}/assets@/assets -s ALLOW_MEMORY_GROWTH=1 --shell-file=${CMAKE_SOURCE_DIR}/src/template.html"
     )
     set(ASSETS_PATH_VALUE "/assets") # Virtual path di browser
 else()
