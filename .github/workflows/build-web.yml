@@ -7,6 +7,9 @@ jobs:
     name: Build demo for Web
     runs-on: ubuntu-latest
     steps:
+      - name: Install Linux Dependencies
+        run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -31,8 +34,8 @@ jobs:
       - name: Prepare for upload
         run: |
           mkdir _site
+          mv build/bin/*.html _site/index.html
           mv build/bin/* _site/
-          mv _site/*.html _site/index.html
 
       - name: Fix permissions
         run: |
