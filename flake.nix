@@ -22,6 +22,7 @@
           name = "sdl";
 
           nativeBuildInputs = with pkgs; [
+            emscripten
             cmake
             cmake-lint
             cmake-format

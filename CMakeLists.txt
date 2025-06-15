@@ -38,6 +38,17 @@ function(set_output_directories base_dir)
     endif()
 endfunction()
 
+if((APPLE AND NOT CMAKE_SYSTEM_NAME MATCHES "Darwin") OR EMSCRIPTEN)
+    set(BUILD_SHARED_LIBS
+        OFF
+        CACHE INTERNAL ""
+    ) # Disable shared builds on platforms where it does not make sense to use
+      # them
+    set(SDL_SHARED OFF)
+else()
+    set(SDL_SHARED ON)
+endif()
+
 file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp
      ${CMAKE_SOURCE_DIR}/src/*.h
 )
@@ -65,10 +76,22 @@ else()
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 endif()
 
+if(EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_SUFFIX
+        ".html"
+        CACHE INTERNAL ""
+    )
+    set_target_properties(
+        ${PROJECT_NAME} PROPERTIES LINK_FLAGS "--preload-file assets@/assets"
+    )
+    set(ASSETS_PATH_VALUE "/assets") # Virtual path di browser
+else()
+    set(ASSETS_PATH_VALUE
+        $<IF:$<CONFIG:Debug>,"${CMAKE_CURRENT_SOURCE_DIR}/assets","./assets">
+    )
+endif()
 # add defininition
 target_compile_definitions(
-    ${PROJECT_NAME}
-    PRIVATE
-        SDL_MAIN_USE_CALLBACKS
-        ASSETS_PATH=$<IF:$<CONFIG:Debug>,"${CMAKE_CURRENT_SOURCE_DIR}/assets","./assets">
+    ${PROJECT_NAME} PRIVATE SDL_MAIN_USE_CALLBACKS
+                            ASSETS_PATH=${ASSETS_PATH_VALUE}
 )
