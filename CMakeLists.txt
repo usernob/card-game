@@ -78,7 +78,10 @@ if(EMSCRIPTEN)
         CACHE INTERNAL ""
     )
     set_target_properties(
-        ${PROJECT_NAME} PROPERTIES LINK_FLAGS "--preload-file assets@/assets"
+        ${PROJECT_NAME}
+        PROPERTIES
+            LINK_FLAGS
+            "--preload-file ${CMAKE_SOURCE_DIR}/assets@/assets -s ALLOW_MEMORY_GROWTH=1"
     )
     set(ASSETS_PATH_VALUE "/assets") # Virtual path di browser
 else()
@@ -89,5 +92,5 @@ endif()
 # add defininition
 target_compile_definitions(
     ${PROJECT_NAME} PRIVATE SDL_MAIN_USE_CALLBACKS
-                            ASSETS_PATH=${ASSETS_PATH_VALUE}
+                            ASSETS_PATH="${ASSETS_PATH_VALUE}"
 )
