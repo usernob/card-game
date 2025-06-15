@@ -65,6 +65,10 @@
           ];
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
           NIX_LDFLAGS = "-rpath ${pkgs.lib.makeLibraryPath buildInputs}";
+
+          shellHook = ''
+            export EM_CACHE="$PWD/.cache/emscripten"
+          '';
         };
       }
     );
