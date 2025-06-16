@@ -40,7 +40,7 @@ jobs:
       uses: ./.github/actions/setup-ninja
 
     - name: Configure
-      run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE
+      run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE -DCMAKE_BUILD_TYPE=Release
 
     - name: Build
       run: cmake --build build --config Release
