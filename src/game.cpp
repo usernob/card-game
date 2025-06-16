@@ -8,9 +8,9 @@ float getStageScoreMult(int stage)
         case 1:
             return 1.0f;
         case 2:
-            return 1.5f;
+            return 1.12f;
         case 3:
-            return 2.0f;
+            return 1.32f;
         default:
             return 1.0f;
     }
@@ -157,7 +157,7 @@ void Game::nextStage()
     card_manager.resetCards();
 
     m_round_counter = 1;
-    m_target_score += 500;
+    m_target_score += 200;
 }
 
 void Game::nextRound()
@@ -308,8 +308,8 @@ void Game::newRound()
 void Game::newGame()
 {
     card_manager.m_hand_cards.clear();
-    m_stage_counter = 0;
-    m_round_counter = 0;
+    m_stage_counter = 1;
+    m_round_counter = 1;
     m_target_score = 200;
     m_score = 0;
     m_current_hand_rank = {0, 1};

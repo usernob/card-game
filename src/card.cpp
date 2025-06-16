@@ -115,9 +115,12 @@ void CardManager::shuffleCards()
 void CardManager::getNewShowedCards()
 {
     int n = m_hand_cards.capacity() - m_hand_cards.size();
+    if (m_cards.size() < n)
+    {
+        resetCards();
+    }
     for (int i = 0; i < n; i++)
     {
-        if (m_cards.empty()) break;
         m_hand_cards.push_back(std::move(m_cards.back()));
         m_cards.pop_back();
     }
@@ -417,8 +420,9 @@ void TarotManager::getNewShowedTarots()
     shuffleTarots();
     for (int i = 0; i < 3; i++)
     {
-        if (m_tarots.empty()) {
-            break; 
+        if (m_tarots.empty())
+        {
+            break;
         }
         m_showed_tarots.push_back(std::move(m_tarots.back()));
         m_tarots.pop_back();
