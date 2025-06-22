@@ -1,8 +1,9 @@
-build*
-release
-out
-.cache
+build*/
+release/
+out/
+.cache/
 .idea
 .vs
 .vscode
 .direnv
+.vgcore*
