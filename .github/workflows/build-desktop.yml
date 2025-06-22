@@ -82,9 +82,9 @@ jobs:
           mkdir -p release
 
           # Copy and rename executables with proper extensions
-          cp artifacts/windows-vs-artifact/* release/
-          cp artifacts/linux-gcc-artifact/* release/
-          cp artifacts/macos-artifact/* release/
+          cp -r artifacts/windows-vs-artifact/* release/
+          cp -r artifacts/linux-gcc-artifact/* release/
+          cp -r artifacts/macos-artifact/* release/
 
           ls -la release/
 
