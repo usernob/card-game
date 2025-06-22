@@ -81,13 +81,6 @@ jobs:
         run: |
           mkdir -p release
 
-          # Copy and rename executables with proper extensions
-          cp -r artifacts/windows-vs-artifact/* release/
-          cp -r artifacts/linux-gcc-artifact/* release/
-          cp -r artifacts/macos-artifact/* release/
-
-          ls -la release/
-
           cd artifacts
           zip -r ../release/windows-build.zip windows-vs-artifact/
           zip -r ../release/linux-gcc-build.zip linux-gcc-artifact/
@@ -102,3 +95,5 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: ${{ contains(github.ref_name, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
