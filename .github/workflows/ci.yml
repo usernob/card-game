@@ -1,6 +1,10 @@
-name: CI
+name: Build-desktop
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+    tags: ["v*"]
+  pull_request:
 
 defaults:
   run:
@@ -15,38 +19,86 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: windows-vs2025, os: windows-2025 }
-        - { name: linux-gcc,      os: ubuntu-latest }
-        - { name: linux-clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: macos,          os: macos-latest  }
+          - { name: windows-vs, os: windows-2025 }
+          - { name: linux-gcc, os: ubuntu-latest }
+          - {
+              name: linux-clang,
+              os: ubuntu-latest,
+              flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++,
+            }
+          - { name: macos, os: macos-latest }
 
     steps:
-    - name: Install Linux Dependencies
-      if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+      - name: Install Linux Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update && sudo apt-get install \
+          gnome-desktop-testing libasound2-dev libpulse-dev \
+          libaudio-dev libjack-dev libsndio-dev libx11-dev libxext-dev \
+          libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxtst-dev \
+          libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
+          libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev \
+          libpipewire-0.3-dev libwayland-dev libdecor-0-dev liburing-dev
 
-    - name: Checkout
-      uses: actions/checkout@v4
-      with: 
-        submodules: recursive
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
 
-    - name: Set up MSVC toolchain
-      uses: ilammy/msvc-dev-cmd@v1
-      if: runner.os == 'Windows'
-      with:
-        arch: x64
+      - name: Set up MSVC toolchain
+        uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
 
-    - name: Set up ninja
-      uses: ./.github/actions/setup-ninja
+      - name: Set up ninja
+        uses: ./.github/actions/setup-ninja
 
-    - name: Configure
-      run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE -DCMAKE_BUILD_TYPE=Release
+      - name: Configure
+        run: cmake -B build -G Ninja ${{matrix.platform.flags}} -DBUILD_SHARED_LIBS=FALSE -DCMAKE_BUILD_TYPE=Release
 
-    - name: Build
-      run: cmake --build build --config Release
+      - name: Build
+        run: cmake --build build --config Release
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ matrix.platform.name }}-artifact
-        path: build/bin/
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform.name }}-artifact
+          path: build/bin/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Prepare Release Assets
+        run: |
+          mkdir -p release
+
+          # Copy and rename executables with proper extensions
+          cp artifacts/windows-vs-artifact/* release/
+          cp artifacts/linux-gcc-artifact/* release/
+          cp artifacts/macos-artifact/* release/
+
+          ls -la release/
+
+          cd artifacts
+          zip -r ../release/windows-build.zip windows-vs-artifact/
+          zip -r ../release/linux-gcc-build.zip linux-gcc-artifact/
+          zip -r ../release/linux-clang-build.zip linux-clang-artifact/
+          zip -r ../release/macos-build.zip macos-artifact/
+          cd ..
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}

@@ -1,13 +1,13 @@
-name: 'Setup ninja'
-description: 'Download ninja and add it to the PATH environment variable'
+name: "Setup ninja"
+description: "Download ninja and add it to the PATH environment variable"
 inputs:
   version:
-    description: 'Ninja version'
-    default: '1.12.1'
+    description: "Ninja version"
+    default: "1.12.1"
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: 'Calculate variables'
+    - name: "Calculate variables"
       id: calc
       shell: sh
       run: |
@@ -34,28 +34,28 @@ runs:
         esac
         echo "archive=${archive}" >> ${GITHUB_OUTPUT}
         echo "cache-key=${archive}-${{ inputs.version }}-${{ runner.os }}-${{ runner.arch }}" >> ${GITHUB_OUTPUT}
-    - name: 'Restore cached ${{ steps.calc.outputs.archive }}'
+    - name: "Restore cached ${{ steps.calc.outputs.archive }}"
       id: cache-restore
       uses: actions/cache/restore@v4
       with:
-        path: '${{ runner.temp }}/${{ steps.calc.outputs.archive }}'
+        path: "${{ runner.temp }}/${{ steps.calc.outputs.archive }}"
         key: ${{ steps.calc.outputs.cache-key }}
-    - name: 'Download ninja ${{ inputs.version }} for ${{ runner.os }} (${{ runner.arch }})'
+    - name: "Download ninja ${{ inputs.version }} for ${{ runner.os }} (${{ runner.arch }})"
       if: ${{ !steps.cache-restore.outputs.cache-hit || steps.cache-restore.outputs.cache-hit == 'false' }}
       shell: pwsh
       run: |
         Invoke-WebRequest "https://github.com/ninja-build/ninja/releases/download/v${{ inputs.version }}/${{ steps.calc.outputs.archive }}" -OutFile "${{ runner.temp }}/${{ steps.calc.outputs.archive }}"
-    - name: 'Cache ${{ steps.calc.outputs.archive }}'
+    - name: "Cache ${{ steps.calc.outputs.archive }}"
       if: ${{ !steps.cache-restore.outputs.cache-hit || steps.cache-restore.outputs.cache-hit == 'false' }}
       uses: actions/cache/save@v4
       with:
-        path: '${{ runner.temp }}/${{ steps.calc.outputs.archive }}'
+        path: "${{ runner.temp }}/${{ steps.calc.outputs.archive }}"
         key: ${{ steps.calc.outputs.cache-key }}
-    - name: 'Extract ninja'
+    - name: "Extract ninja"
       shell: pwsh
       run: |
         7z "-o${{ runner.temp }}/ninja-${{ inputs.version }}-${{ runner.arch }}" x "${{ runner.temp }}/${{ steps.calc.outputs.archive }}"
-    - name: 'Set output variables'
+    - name: "Set output variables"
       id: final
       shell: pwsh
       run: |
